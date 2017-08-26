@@ -33,9 +33,9 @@ public class NavigationMenu implements INavigation {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Available Examples']")));
     }
 
-    public FormAuthentication clickFormAuthentication() {
+    public LoginPage clickFormAuthentication() {
         formAuthenticationLink.click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(FormAuthentication.SCREEN_PRESENCE_LOCATOR));
-        return PageFactory.initElements(driver, FormAuthentication.class);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(LoginPage.SCREEN_PRESENCE_LOCATOR));
+        return PageFactory.initElements(driver, LoginPage.class);
     }
 }

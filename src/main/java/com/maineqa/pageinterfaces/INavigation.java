@@ -1,8 +1,8 @@
 package com.maineqa.pageinterfaces;
 
-import com.maineqa.pages.FormAuthentication;
+import com.maineqa.pages.LoginPage;
 
 public interface INavigation {
 
-    FormAuthentication clickFormAuthentication();
+    LoginPage clickFormAuthentication();
 }

@@ -1,10 +1,9 @@
 package com.maineqa;
 
-import com.maineqa.pages.FormAuthentication;
+import com.maineqa.pages.LoginPage;
 import com.maineqa.pages.NavigationMenu;
 import com.maineqa.pages.SecuredPage;
 import com.maineqa.utilities.WebDriverFactory;
-import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -33,19 +32,25 @@ public class LoginTest {
     }
 
     @Test(description = "Login Test")
-    public void loginTest() {
+    public void loginLogoutTest() {
         String username = "tomsmith";
         String password = "SuperSecretPassword!";
         String subheading = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.";
 
-        FormAuthentication formAuthentication = navigationMenu.clickFormAuthentication();
-        Assert.assertEquals(formAuthentication.getFooterText(), "Powered by Elemental Selenium");
-        Assert.assertEquals(formAuthentication.getPageSubHeader(), subheading);
-        Assert.assertEquals(formAuthentication.getPageHeader(), "Login Page");
+        LoginPage loginPage = navigationMenu.clickFormAuthentication();
+        Assert.assertEquals(loginPage.getFooterText(), "Powered by Elemental Selenium");
+        Assert.assertEquals(loginPage.getPageSubHeader(), subheading);
+        Assert.assertEquals(loginPage.getPageHeader(), "Login Page");
 
-        SecuredPage securedPage = formAuthentication.login(username, password);
+        SecuredPage securedPage = loginPage.login(username, password);
+        Assert.assertEquals(securedPage.getPageMessage(), "You logged into a secure area!");
         Assert.assertEquals(securedPage.getPageHeader(), "Secure Area");
         Assert.assertEquals(securedPage.getFooterText(), "Powered by Elemental Selenium");
+
+        securedPage.clickLogout();
+        Assert.assertNotEquals(securedPage.getPageHeader(), "Secure Area");
+        Assert.assertEquals(loginPage.getPageMessage(), "You logged out of the secure area!");
+
     }
 
     @Test(description = "Validation Message Test")
@@ -56,23 +61,23 @@ public class LoginTest {
         String usernameErrorMessage = "Your username is invalid!";
         String passwordErrorMessage = "Your password is invalid!";
 
-        FormAuthentication formAuthentication = navigationMenu.clickFormAuthentication();
+        LoginPage loginPage = navigationMenu.clickFormAuthentication();
 
         // enter incorrect username
-        formAuthentication.username.sendKeys(incorrectUsername);
-        formAuthentication.clickSubmitButton();
-        Assert.assertEquals(formAuthentication.getPageMessage(), usernameErrorMessage);
+        loginPage.username.sendKeys(incorrectUsername);
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(loginPage.getPageMessage(), usernameErrorMessage);
 
         // enter incorrect password
-        formAuthentication.username.sendKeys(username);
-        formAuthentication.password.sendKeys(incorrectPassword);
-        formAuthentication.clickSubmitButton();
-        Assert.assertEquals(formAuthentication.getPageMessage(), passwordErrorMessage);
+        loginPage.username.sendKeys(username);
+        loginPage.password.sendKeys(incorrectPassword);
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(loginPage.getPageMessage(), passwordErrorMessage);
 
         // submit blank password
-        formAuthentication.enterLoginInformation("", "");
-        formAuthentication.clickSubmitButton();
-        Assert.assertEquals(formAuthentication.getPageMessage(), usernameErrorMessage);
+        loginPage.enterLoginInformation("", "");
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(loginPage.getPageMessage(), usernameErrorMessage);
     }
 
     @Test(description = "Validation Message Test")
@@ -81,15 +86,15 @@ public class LoginTest {
         String incorrectPassword = "qwerty100";
         String usernameErrorMessage = "Your username is invalid!";
 
-        FormAuthentication formAuthentication = navigationMenu.clickFormAuthentication();
-        formAuthentication.enterLoginInformation(incorrectUsername, incorrectPassword);
-        formAuthentication.clickSubmitButton();
-        Assert.assertEquals(formAuthentication.getPageMessage(), usernameErrorMessage);
-        formAuthentication.closePageMessage();
+        LoginPage loginPage = navigationMenu.clickFormAuthentication();
+        loginPage.enterLoginInformation(incorrectUsername, incorrectPassword);
+        loginPage.clickSubmitButton();
+        Assert.assertEquals(loginPage.getPageMessage(), usernameErrorMessage);
+        loginPage.closePageMessage();
 
         boolean isCloseButtonClicked = false;
         try {
-            formAuthentication.closePageMessage();
+            loginPage.closePageMessage();
             isCloseButtonClicked = true;
         } catch (NoSuchElementException e) {
             Assert.assertEquals(isCloseButtonClicked, false);

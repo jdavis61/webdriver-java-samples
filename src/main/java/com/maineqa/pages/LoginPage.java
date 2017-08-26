@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class FormAuthentication extends BasePage implements IFormAuthentication {
+public class LoginPage extends BasePage implements IFormAuthentication {
 
     @FindBy(id = "username")
     public WebElement username;
@@ -20,7 +20,7 @@ public class FormAuthentication extends BasePage implements IFormAuthentication 
 
     public static final By SCREEN_PRESENCE_LOCATOR = By.id("username");
 
-    public FormAuthentication(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 

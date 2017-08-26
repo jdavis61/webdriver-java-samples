@@ -62,5 +62,12 @@ public class NavigationMenu implements INavigation {
         return PageFactory.initElements(driver, ChallengingDomPage.class);
     }
 
+    @Override
+    public CheckboxesPage clickCheckboxesPage() {
+        driver.get(basePage + "/checkboxes");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(CheckboxesPage.SCREEN_PRESENCE_LOCATOR));
+        return PageFactory.initElements(driver, CheckboxesPage.class);
+    }
+
 
 }

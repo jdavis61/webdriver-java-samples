@@ -48,5 +48,11 @@ public class NavigationMenu implements INavigation {
         return PageFactory.initElements(driver, JavaScriptAlertsPage.class);
     }
 
+    public HoversPage clickHoversPage() {
+        driver.get(basePage + "/hovers");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(HoversPage.SCREEN_PRESENCE_LOCATOR));
+        return PageFactory.initElements(driver, HoversPage.class);
+    }
+
 
 }

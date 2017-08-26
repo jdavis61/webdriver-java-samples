@@ -21,12 +21,16 @@ rackup
 To execute the tests locally using chrome, follow the below instructions.
 
 clone the latest code from master
-```git clone https://github.com/jdavis61/webdriver-java-samples.git``` 
+```
+git clone https://github.com/jdavis61/webdriver-java-samples.git
+``` 
 
 If you have already downloaded the source code run ```git pull``` to get the latest updates.
 
 Run tests
-```mvn test```
+```
+mvn test
+```
 
 Executing this command will load chrome locally on your system and run all tests in the test/java/com/maineqa folder.
 

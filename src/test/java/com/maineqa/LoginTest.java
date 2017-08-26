@@ -4,6 +4,8 @@ import com.maineqa.pages.FormAuthentication;
 import com.maineqa.pages.NavigationMenu;
 import com.maineqa.pages.SecuredPage;
 import com.maineqa.utilities.WebDriverFactory;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -71,6 +73,29 @@ public class LoginTest {
         formAuthentication.enterLoginInformation("", "");
         formAuthentication.clickSubmitButton();
         Assert.assertEquals(formAuthentication.getPageMessage(), usernameErrorMessage);
+    }
+
+    @Test(description = "Validation Message Test")
+    public void closeValidationMessageTest() {
+        String incorrectUsername = "timsmith";
+        String incorrectPassword = "qwerty100";
+        String usernameErrorMessage = "Your username is invalid!";
+
+        FormAuthentication formAuthentication = navigationMenu.clickFormAuthentication();
+        formAuthentication.enterLoginInformation(incorrectUsername, incorrectPassword);
+        formAuthentication.clickSubmitButton();
+        Assert.assertEquals(formAuthentication.getPageMessage(), usernameErrorMessage);
+        formAuthentication.closePageMessage();
+
+        boolean isCloseButtonClicked = false;
+        try {
+            formAuthentication.closePageMessage();
+            isCloseButtonClicked = true;
+        } catch (NoSuchElementException e) {
+            Assert.assertEquals(isCloseButtonClicked, false);
+        }
+
+
     }
 }
 

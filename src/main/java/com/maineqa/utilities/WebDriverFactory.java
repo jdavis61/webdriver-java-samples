@@ -14,6 +14,8 @@ public class WebDriverFactory {
         System.setProperty("webdriver.chrome.driver", pathToChrome);
 
         GetPredefinedBrowserCapabilties dc = new GetPredefinedBrowserCapabilties();
-        return new ChromeDriver(dc.getChromeDesiredCapabilities());
+        WebDriver driver = new ChromeDriver(dc.getChromeDesiredCapabilities());
+        driver.manage().window().maximize();
+        return driver;
     }
 }

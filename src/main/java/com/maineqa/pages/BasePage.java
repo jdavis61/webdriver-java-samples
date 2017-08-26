@@ -55,4 +55,10 @@ public class BasePage implements IBasePage {
         return pageMessage.getText().split("\\r?\\n")[0].trim();
     }
 
+    public void closePageMessage() {
+        By closeMessageIcon = By.cssSelector("#flash > .close");
+        driver.findElement(closeMessageIcon).click();
+        webDriverWait.until(ExpectedConditions.numberOfElementsToBe(closeMessageIcon, 0));
+    }
+
 }

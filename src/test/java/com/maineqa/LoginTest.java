@@ -30,7 +30,6 @@ public class LoginTest {
         driver.quit();
     }
 
-    /*
     @Test(description = "Login Test")
     public void loginTest() {
         String username = "tomsmith";
@@ -46,7 +45,6 @@ public class LoginTest {
         Assert.assertEquals(securedPage.getPageHeader(), "Secure Area");
         Assert.assertEquals(securedPage.getFooterText(), "Powered by Elemental Selenium");
     }
-**/
 
     @Test(description = "Validation Message Test")
     public void validationMessageTest() {

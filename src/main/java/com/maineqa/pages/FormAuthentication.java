@@ -16,7 +16,7 @@ public class FormAuthentication extends BasePage implements IFormAuthentication 
     public WebElement password;
 
     @FindBy(css = "button.radius")
-    public WebElement submitButton;
+    private WebElement submitButton;
 
     public static final By SCREEN_PRESENCE_LOCATOR = By.id("username");
 
@@ -29,9 +29,7 @@ public class FormAuthentication extends BasePage implements IFormAuthentication 
         password.sendKeys(passwordValue);
     }
 
-    public SecuredPage login(String usernameValue, String passwordValue) {
-        enterLoginInformation(usernameValue, passwordValue);
-
+    public void clickSubmitButton() {
         // Added in case an anti-virus secure input pop-up appears after tabbing from password.
         try {
             submitButton.click();
@@ -39,6 +37,11 @@ public class FormAuthentication extends BasePage implements IFormAuthentication 
             SleepUtils.sleep(5000);
             submitButton.click();
         }
+    }
+
+    public SecuredPage login(String usernameValue, String passwordValue) {
+        enterLoginInformation(usernameValue, passwordValue);
+        clickSubmitButton();
 
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(SecuredPage.SCREEN_PRESENCE_LOCATOR));
         return PageFactory.initElements(driver, SecuredPage.class);

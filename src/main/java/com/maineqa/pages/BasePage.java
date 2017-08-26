@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage implements IBasePage {
@@ -18,6 +19,8 @@ public class BasePage implements IBasePage {
     @FindBy(id = "page-footer")
     private WebElement footerText;
 
+    @FindBy(className = "flash")
+    private WebElement pageMessage;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -46,6 +49,10 @@ public class BasePage implements IBasePage {
         return footerText.getText().trim();
     }
 
-
+    public String getPageMessage() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(pageMessage));
+        // Get rid of trailing rendered close button character!
+        return pageMessage.getText().split("\\r?\\n")[0].trim();
+    }
 
 }

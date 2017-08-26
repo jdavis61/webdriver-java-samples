@@ -1,4 +1,4 @@
 package com.maineqa.pageinterfaces.challeningdom;
 
-public interface IChalleningDomPage {
+public interface IChallengingDomPage {
 }

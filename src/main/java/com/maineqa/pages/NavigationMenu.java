@@ -2,6 +2,7 @@ package com.maineqa.pages;
 
 import com.maineqa.pageinterfaces.IJavaScriptAlertsPage;
 import com.maineqa.pageinterfaces.INavigation;
+import com.maineqa.pages.challengingdom.ChallengingDomPage;
 import com.maineqa.utilities.PropertiesUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -52,6 +53,13 @@ public class NavigationMenu implements INavigation {
         driver.get(basePage + "/hovers");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(HoversPage.SCREEN_PRESENCE_LOCATOR));
         return PageFactory.initElements(driver, HoversPage.class);
+    }
+
+    @Override
+    public ChallengingDomPage clickChallengingDomPage() {
+        driver.get(basePage + "/challenging_dom");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(ChallengingDomPage.SCREEN_PRESENCE_LOCATOR));
+        return PageFactory.initElements(driver, ChallengingDomPage.class);
     }
 
 

@@ -3,7 +3,9 @@ package com.maineqa;
 import com.maineqa.pageinterfaces.ITestSetupTeardown;
 import com.maineqa.pages.HoversPage;
 import com.maineqa.pages.NavigationMenu;
-import com.maineqa.utilities.SleepUtils;
+import com.maineqa.pages.challengingdom.ChallengingDomPage;
+import com.maineqa.pages.challengingdom.ChallengingDomRow;
+import com.maineqa.pages.challengingdom.ChallengingDomTable;
 import com.maineqa.utilities.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class HoversTest implements ITestSetupTeardown {
+public class ChallengingDomTest implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;
@@ -33,15 +35,26 @@ public class HoversTest implements ITestSetupTeardown {
     @Test
     public void hoverTest() {
         navigationMenu.loadNavigationMenu();
-        HoversPage hoversPage = navigationMenu.clickHoversPage();
-        Assert.assertEquals(hoversPage.getPageHeader(), "Hovers");
+        ChallengingDomPage challengingDomPage = navigationMenu.clickChallengingDomPage();
+        Assert.assertEquals(challengingDomPage.getPageHeader(), "Challenging DOM");
 
-        for (int i=0; i<3; i++) {
-            hoversPage.hoverOverImageOne();
-            Assert.assertEquals(hoversPage.getUserName(i), "user" + (i+1));
-            hoversPage.clickViewProfile(i);
-            hoversPage.returnToHoversPage();
-        }
+        ChallengingDomTable table = challengingDomPage.getTable();
+        ChallengingDomRow row = table.getRow(0);
+
+        Assert.assertEquals(row.getLorem(), "Iuvaret0");
+        Assert.assertEquals(row.getIpsum(), "Apeirian0");
+        Assert.assertEquals(row.getDolor(), "Adipisci0");
+        Assert.assertEquals(row.getSit(), "Definiebas0");
+        Assert.assertEquals(row.getAmet(), "Consequuntur0");
+        Assert.assertEquals(row.getDiceret(), "Phaedrum0");
+
+        row = table.getRow(9);
+        Assert.assertEquals(row.getLorem(), "Iuvaret9");
+        Assert.assertEquals(row.getIpsum(), "Apeirian9");
+        Assert.assertEquals(row.getDolor(), "Adipisci9");
+        Assert.assertEquals(row.getSit(), "Definiebas9");
+        Assert.assertEquals(row.getAmet(), "Consequuntur9");
+        Assert.assertEquals(row.getDiceret(), "Phaedrum9");
     }
 
 }

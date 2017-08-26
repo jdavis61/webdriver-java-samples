@@ -1,6 +1,7 @@
 package com.maineqa.pages;
 
 import com.maineqa.pageinterfaces.INavigation;
+import com.maineqa.utilities.PropertiesUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Properties;
 
 public class NavigationMenu implements INavigation {
 
@@ -24,7 +27,9 @@ public class NavigationMenu implements INavigation {
 
 
     public void loadNavigationMenu() {
-        driver.get("http://localhost:9292");
+        Properties properties = PropertiesUtils.configurationProperties();
+        String basePage = properties.getProperty("base.page.url");
+        driver.get(basePage);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Available Examples']")));
     }
 

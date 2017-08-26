@@ -1,5 +1,8 @@
 package com.maineqa.pageinterfaces;
 
-public interface ILogin {
+import com.maineqa.pages.SecuredPage;
 
+public interface IFormAuthentication {
+    void enterLoginInformation(String usernameValue, String passwordValue);
+    SecuredPage login(String usernameValue, String passwordValue);
 }

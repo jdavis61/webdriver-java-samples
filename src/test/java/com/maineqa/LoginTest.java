@@ -1,5 +1,6 @@
 package com.maineqa;
 
+import com.maineqa.pageinterfaces.ITestSetupTeardown;
 import com.maineqa.pages.LoginPage;
 import com.maineqa.pages.NavigationMenu;
 import com.maineqa.pages.SecuredPage;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class LoginTest {
+public class LoginTest implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;

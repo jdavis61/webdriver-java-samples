@@ -1,13 +1,13 @@
 package com.maineqa.pages;
 
-import com.maineqa.pageinterfaces.IFormAuthentication;
+import com.maineqa.pageinterfaces.ILogin;
 import com.maineqa.utilities.SleepUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage extends BasePage implements IFormAuthentication {
+public class LoginPage extends BasePage implements ILogin {
 
     @FindBy(id = "username")
     public WebElement username;
@@ -30,12 +30,12 @@ public class LoginPage extends BasePage implements IFormAuthentication {
     }
 
     public void clickSubmitButton() {
-        // Added in case an anti-virus secure input pop-up appears after tabbing from password.
+        // Added in case an anti-virus secure input pop-up appears after tabbing from password which blocks the submit button.
         try {
             submitButton.click();
         } catch (WebDriverException e) {
-            SleepUtils.sleep(5000);
-            submitButton.click();
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click()", submitButton);
         }
     }
 

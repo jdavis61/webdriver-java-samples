@@ -20,7 +20,7 @@ If you have already downloaded the source code run ```git pull``` to get the lat
 
 Run tests
 ```
-mvn test
+mvn integration-test
 ```
 
 Executing this command will load chrome locally on your system and run all tests in the test/java/com/maineqa folder.

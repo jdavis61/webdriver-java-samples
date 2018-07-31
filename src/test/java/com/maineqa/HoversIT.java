@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class HoversTest implements ITestSetupTeardown {
+public class HoversIT implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;
@@ -37,10 +37,8 @@ public class HoversTest implements ITestSetupTeardown {
         Assert.assertEquals(hoversPage.getPageHeader(), "Hovers");
 
         for (int i=0; i<3; i++) {
-            hoversPage.hoverOverImageOne();
+            hoversPage.hoverOverImage(i);
             Assert.assertEquals(hoversPage.getUserName(i), "user" + (i+1));
-            hoversPage.clickViewProfile(i);
-            hoversPage.returnToHoversPage();
         }
     }
 

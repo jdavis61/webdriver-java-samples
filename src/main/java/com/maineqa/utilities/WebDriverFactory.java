@@ -10,7 +10,7 @@ public class WebDriverFactory {
     public static WebDriver createLocalChromeDriverInstance() {
 
         Properties properties = PropertiesUtils.configurationProperties();
-        String pathToChrome = System.getProperty("user.dir") + properties.getProperty("path.to.chrome.executable");
+        String pathToChrome = System.getProperty("user.dir") + properties.getProperty("path.to.chrome.driver");
         System.setProperty("webdriver.chrome.driver", pathToChrome);
 
         GetPredefinedBrowserCapabilties dc = new GetPredefinedBrowserCapabilties();

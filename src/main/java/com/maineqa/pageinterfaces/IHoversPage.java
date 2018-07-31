@@ -1,10 +1,6 @@
 package com.maineqa.pageinterfaces;
 
 public interface IHoversPage {
-    void hoverOverImageOne();
-    void hoverOverImageTwo();
-    void hoverOverImageThree();
-    void returnToHoversPage();
+    void hoverOverImage(int position);
     String getUserName(int position);
-    void clickViewProfile(int position);
 }

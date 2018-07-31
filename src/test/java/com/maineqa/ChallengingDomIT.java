@@ -14,7 +14,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class ChallengingDomTest implements ITestSetupTeardown {
+public class ChallengingDomIT implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;

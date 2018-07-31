@@ -1,6 +1,5 @@
 package com.maineqa.pages;
 
-import com.gargoylesoftware.htmlunit.Page;
 import com.maineqa.pageinterfaces.ISecuredPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

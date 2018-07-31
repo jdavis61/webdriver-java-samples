@@ -29,37 +29,9 @@ public class HoversPage extends BasePage implements IHoversPage {
     }
 
     @Override
-    public void hoverOverImageOne() {
-        hoverOverImage(0);
-    }
-
-    @Override
-    public void hoverOverImageTwo() {
-        hoverOverImage(1);
-    }
-
-    @Override
-    public void hoverOverImageThree() {
-        hoverOverImage(2);
-    }
-
-    private void hoverOverImage(int position) {
+    public void hoverOverImage(int position) {
         actions.moveToElement(icons.get(position)).build().perform();
         webDriverWait.until(ExpectedConditions.visibilityOf(figureCaptions.get(position)));
-    }
-
-    @Override
-    public void clickViewProfile(int position) {
-        hoverOverImage(position);
-        figureCaptions.get(position).findElement(By.linkText("View profile")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("c")));
-
-    }
-
-    @Override
-    public void returnToHoversPage() {
-        driver.navigate().back();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(SCREEN_PRESENCE_LOCATOR));
     }
 
     @Override

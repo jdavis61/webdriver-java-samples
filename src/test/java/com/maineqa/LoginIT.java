@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class LoginTest implements ITestSetupTeardown {
+public class LoginIT implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;

@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class JavaScriptAlertTest implements ITestSetupTeardown {
+public class JavaScriptAlertIT implements ITestSetupTeardown {
 
     private WebDriver driver;
     private NavigationMenu navigationMenu;

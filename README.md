@@ -11,7 +11,7 @@ This repo contains examples of how to use the webdriver java bindings to create 
 # Test execution
 To execute the tests locally using chrome, follow the below instructions.
 
-clone the latest code from master
+clone the latest version of the code from master.
 ```
 git clone https://github.com/jdavis61/webdriver-java-samples.git
 ``` 
